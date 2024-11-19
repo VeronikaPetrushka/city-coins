@@ -8,9 +8,7 @@ import Icons from "./Icons";
 const { height } = Dimensions.get('window');
 
 const Details = ({ place }) => {
-    const mapRef = useRef(null);
     const navigation = useNavigation();
-    const [markerSize, setMarkerSize] = useState(40);
     const [visited, setVisited] = useState(false);
     const [checkInDisabled, setCheckInDisabled] = useState(false);
 
@@ -58,50 +56,26 @@ const Details = ({ place }) => {
                 <Icons type={'back'}/>
             </TouchableOpacity>
                 <Image source={place.image} style={styles.image} />
-            <View style={styles.mapContainer}>
-                <MapView
-                    ref={mapRef}
-                    key={place.name}
-                    style={styles.map}
-                    initialRegion={{
-                        latitude: place.coordinates[0].lat,
-                        longitude: place.coordinates[0].lng,
-                        latitudeDelta: 0.05,
-                        longitudeDelta: 0.05,
-                    }}
-                    onError={(e) => console.error('MapView error:', e)}
-                >
-                    <Marker
-                        coordinate={{
-                            latitude: place.coordinates[0].lat,
-                            longitude: place.coordinates[0].lng,
-                        }}
-                    >
-                        <View>
-                            <Image
-                                source={place.image}
-                                style={[styles.markerImage, { width: markerSize, height: markerSize }]}
-                            />
-                            {visited && (
-                                <View style={styles.visitedIcon}>
-                                    <Icons type={'visited'} />
-                                </View>
-                            )}
-                        </View>
-                    </Marker>
-                </MapView>
+            <View style={styles.btnContainer}>
                 <TouchableOpacity  
-                    style={[styles.checkBtn, checkInDisabled && { opacity: 0.5 }]} 
+                    style={[styles.checkBtn, {backgroundColor: '#0036b7'}]} 
+                    onPress={() => navigation.navigate('AlbumScreen', {place: place})}
+                >
+                    <Text style={styles.checkBtnText}>Album</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity  
+                    style={[styles.checkBtn, checkInDisabled && {opacity: 0.5}]} 
                     onPress={() => navigation.navigate('CheckInScreen', {place: place})}
-                    disabled={checkInDisabled}
+                    // disabled={checkInDisabled}
                 >
                     <Text style={styles.checkBtnText}>Check in</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.textContainer}>
                 <Text style={styles.name}>{place.name}</Text>
-                <ScrollView style={{width: '100%', height: height * 0.35}}>
-                    <Text style={styles.description}>Adress: {place.address}</Text>
+                <ScrollView style={{width: '100%', height: height * 0.47}}>
+                    <Text style={styles.description}>Address: {place.address}</Text>
                     <Text style={styles.description}>Admission: {place.admission}</Text>
                     <Text style={styles.description}>{place.history}</Text>
                     <Text style={styles.fact}>{place.touristInterest}</Text>
@@ -123,11 +97,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#e3effa'
     },
     backIcon: {
-        width: 65,
-        height: 65,
+        width: 60,
+        height: 60,
         padding: 10,
         position: 'absolute',
-        top: height * 0.052,
+        top: height * 0.04,
         left: 10,
         zIndex: 10
     },
@@ -138,7 +112,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 16,
         marginBottom: 16,
     },
-    mapContainer: {
+    btnContainer: {
         width: '100%',
         borderRadius: 10,
         overflow: "hidden",
@@ -147,22 +121,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    map: {
-        width: "48%",
-        height: height * 0.2,
-        borderRadius: 10,
-        overflow: 'hidden'
-    },
     checkBtn: {
         width: "48%",
-        height: height * 0.2,
+        height: height * 0.08,
         borderRadius: 10,
         backgroundColor: '#3D85C6',
         alignItems: 'center',
         justifyContent: 'center',
     },
     checkBtnText: {
-        color: "#0036b7",
+        color: "#fff",
         fontSize: 20,
         fontWeight: '900',
     },

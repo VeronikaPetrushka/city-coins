@@ -122,7 +122,7 @@ const SettingsModal = ({ visible, onClose }) => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
                 <View style={styles.modalContent}>
-                    {/* {showResetConfirmation ? (
+                    {showResetConfirmation ? (
                         <>
                             <Text style={styles.confirmationText}>
                                 Are you sure you want to reset your progress? It will reset your account along with your daily game progress, folders, and its images!
@@ -134,7 +134,7 @@ const SettingsModal = ({ visible, onClose }) => {
                                 <Text style={styles.cancelBtnText}>Close</Text>
                             </TouchableOpacity>
                         </>
-                    ) : ( */}
+                    ) : (
                         <>
                             <TouchableOpacity style={styles.closeButton} onPress={onClose}>
                                 <Icons type="close" />
@@ -143,7 +143,7 @@ const SettingsModal = ({ visible, onClose }) => {
                             <ScrollView style={{width: '100%'}}>
                                 <Text style={styles.modalTitle}>Settings</Text>
 
-                                {/* <View style={styles.upperContainer}>
+                                <View style={styles.upperContainer}>
                                     <View style={[styles.avatarPlaceholder, uploadedImage && styles.imagePlaceholder]}>
                                         <Image source={uploadedImage} style={styles.uploadedAvatarImage} />
                                     </View>
@@ -155,7 +155,7 @@ const SettingsModal = ({ visible, onClose }) => {
                                     <TextInput
                                         value={name}
                                         placeholder="Enter your name"
-                                        placeholderTextColor="#854442"
+                                        placeholderTextColor="#3a72fa"
                                         onChangeText={handleNameChange}
                                         style={styles.input}
                                     />
@@ -181,11 +181,11 @@ const SettingsModal = ({ visible, onClose }) => {
 
                                 <TouchableOpacity style={styles.resetBtn} onPress={() => setShowResetConfirmation(true)}>
                                     <Text style={styles.resetBtnText}>Reset</Text>
-                                </TouchableOpacity> */}
+                                </TouchableOpacity>
                             </ScrollView>
 
                         </>
-                    {/* )} */}
+                    )}
                 </View>
                 </TouchableWithoutFeedback>
           </KeyboardAvoidingView>
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         textAlign: 'center',
         marginBottom: 20,
-        color: '#854442'
+        color: '#3D85C6'
     },
     regulatorContainer: {
         flexDirection: 'row',
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         textAlign: 'center',
         fontWeight: 'bold',
-        color: '#C06014'
+        color: '#3a72fa'
     },
     toggleContainer: {
         padding: 7,
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 1,
         borderRadius: 30,
-        borderColor: '#C06014',
+        borderColor: '#3a72fa',
     },
     toggleContainerOff: {
         borderColor: '#ccc',
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     toggleTextOn: {
-        color: '#C06014',
+        color: '#3a72fa',
     },
     toggleTextOff: {
         color: '#ccc',
@@ -269,7 +269,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     toggleOn: {
-        backgroundColor: '#C06014',
+        backgroundColor: '#3a72fa',
         alignSelf: 'flex-end',
     },
     toggleOff: {
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     },
     shareBtn: {
         width: '100%',
-        backgroundColor: '#C06014',
+        backgroundColor: '#3a72fa',
         borderRadius: 15,
         padding: 15,
         alignItems: 'center',
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
         width: width * 0.7,
         backgroundColor: 'transparent',
         borderWidth: 1,
-        borderColor: '#854442',
+        borderColor: '#3D85C6',
         borderRadius: 15,
         padding: 15,
         alignItems: 'center',
@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     resetBtnText: {
-        color: '#854442',
+        color: '#3D85C6',
         fontSize: 19,
         fontWeight: '500',
     },
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
     },
     cancelReset: {
         width: width * 0.7,
-        backgroundColor: '#854442',
+        backgroundColor: '#3D85C6',
         borderRadius: 15,
         padding: 15,
         alignItems: 'center',
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
         fontWeight: "900",
         marginBottom: 20,
         marginTop: -15,
-        color: '#854442'
+        color: '#3D85C6'
       },
     
       avatarPlaceholder: {
@@ -377,11 +377,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         marginTop: height * 0.05,
         borderWidth: 1,
-        borderColor: "#854442",
+        borderColor: "#3D85C6",
         borderRadius: 10,
         width: "100%",
         fontSize: 17,
-        color: '#854442',
+        color: '#3D85C6',
         marginBottom: 20,
       },
     
@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 10,
         marginBottom: 15,
-        backgroundColor: '#C06014',
+        backgroundColor: '#3a72fa',
       },
     
       btnCreateText: {
@@ -402,7 +402,7 @@ const styles = StyleSheet.create({
     
       btnText: {
         fontSize: 18,
-        color: '#854442',
+        color: '#3D85C6',
         fontWeight: '500'
       },
     
@@ -412,7 +412,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
-        borderColor: '#854442',
+        borderColor: '#3a72fa',
         borderRadius: 10,
         width: '100%'
       },

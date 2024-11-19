@@ -3,10 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image, ImageBackg
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from "react-native-linear-gradient";
-// import WelcomeModal from "./WelcomeModal.jsx";
+import WelcomeModal from "./WelcomeModal.jsx";
 import SettingsModal from "./SettingsModal.jsx";
 // import TripModal from "./TripModal.jsx";
-// import Tutorial from "./Tutorial.jsx";
+import Tutorial from "./Tutorial.jsx";
 import Map from "./Map";
 
 const { height , width} = Dimensions.get('window');
@@ -118,10 +118,10 @@ const Home = () => {
                 </TouchableOpacity>
             </View>
 
-            {/* <SettingsModal visible={settingsModalVisible} onClose={handleSettingsVisible} /> */}
-            {/* <WelcomeModal visible={welcomeModalVisible} onClose={handleWelcomeVisible}/>
-            <TripModal visible={tripModalVisible} onClose={handleTripVisible} />
-            <Tutorial visible={tutorialModalVisible} onClose={handleTutorialVisible}/> */}
+            <SettingsModal visible={settingsModalVisible} onClose={handleSettingsVisible} />
+            {/* <WelcomeModal visible={welcomeModalVisible} onClose={handleWelcomeVisible}/> */}
+            {/* <TripModal visible={tripModalVisible} onClose={handleTripVisible} /> */}
+            <Tutorial visible={tutorialModalVisible} onClose={handleTutorialVisible}/>
 
         </View>
         // </ImageBackground>

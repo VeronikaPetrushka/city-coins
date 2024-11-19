@@ -9,6 +9,7 @@ import { MusicProvider } from './src/constants/music';
 import MusicPlayer from './src/components/MusicPlayer';
 import HomeScreen from './src/screens/HomeScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
+import CheckInScreen from './src/screens/CheckInScreen';
 
 enableScreens();
 
@@ -72,6 +73,11 @@ const App = () => {
                         <Stack.Screen 
                             name="DetailsScreen" 
                             component={DetailsScreen} 
+                            options={{ headerShown: false }} 
+                        />
+                        <Stack.Screen 
+                            name="CheckInScreen" 
+                            component={CheckInScreen} 
                             options={{ headerShown: false }} 
                         />
                     </Stack.Navigator>
