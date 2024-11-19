@@ -76,7 +76,7 @@ const Home = () => {
                 <View style={styles.scoreContainer}>
                     <Text style={styles.score}>{score}</Text>
                 </View>
-                <TouchableOpacity style={styles.infoBtn} onPress={handleTripVisible}>
+                <TouchableOpacity style={styles.infoBtn} onPress={() => navigation.navigate('StoreScreen')}>
                     <Text style={styles.infoText}>Store</Text>
                 </TouchableOpacity>
                 <View style={styles.settingsContainer}>

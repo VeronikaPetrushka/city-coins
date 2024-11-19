@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Alert, Dimensions, ScrollView, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { launchImageLibrary } from 'react-native-image-picker';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import MapView, { Marker } from "react-native-maps";
 import Icons from './Icons';
 
@@ -10,7 +10,7 @@ const { height, width } = Dimensions.get('window');
 
 const heightThreshold = 700;
 
-const imageContainerHeight = height < heightThreshold ? height * 0.3 : height * 0.35;
+const imageContainerHeight = height < heightThreshold ? height * 0.28 : height * 0.33;
 
 const CheckIn = ({ place }) => {
     const mapRef = useRef(null);
@@ -22,33 +22,34 @@ const CheckIn = ({ place }) => {
     const [visited, setVisited] = useState(false);
     const [photos, setPhotos] = useState([]);
 
+    const checkIfVisited = async () => {
+        try {
+            const storedVisitedTrips = await AsyncStorage.getItem('visitedTrips');
+            const visitedTripsArray = storedVisitedTrips ? JSON.parse(storedVisitedTrips) : [];
+
+            const visitedTrip = visitedTripsArray.find(trip => 
+                trip.place && trip.place.name === place.name
+            );
+
+            setVisited(!!visitedTrip);
+        } catch (error) {
+            Alert.alert('Error', 'Could not check visit status: ' + error.message);
+        }
+    };
+
     useEffect(() => {
-        const initialize = async () => {
-            if (!place || !place.name) {
-                Alert.alert('Error', 'Place is not defined or missing necessary information.');
-                return;
-            }
-                
-            await checkIfVisited();
-        };
-        
-        const checkIfVisited = async () => {
-            try {
-                const storedVisitedTrips = await AsyncStorage.getItem('visitedTrips');
-                const visitedTripsArray = storedVisitedTrips ? JSON.parse(storedVisitedTrips) : [];
-    
-                const visitedTrip = visitedTripsArray.find(trip => 
-                    trip.place && trip.place.name === place.name
-                );
-    
-                setVisited(!!visitedTrip);
-            } catch (error) {
-                Alert.alert('Error', 'Could not check visit status: ' + error.message);
-            }
-        };
-    
-        initialize();
-    }, [place]);    
+        if (!place || !place.name) {
+            Alert.alert('Error', 'Place is not defined or missing necessary information.');
+            return;
+        }
+        checkIfVisited();
+    }, [place]);
+
+    useFocusEffect(
+        useCallback(() => {
+            checkIfVisited();
+        }, [place])
+    );
 
     const handleZoomToggle = () => {
         const { lat, lng } = place.coordinates[0];
@@ -229,7 +230,7 @@ const styles = StyleSheet.create({
         fontWeight: '900',
         marginBottom: 30,
         color: '#0036b7',
-        width: width * 0.8,
+        width: width * 0.69,
         textAlign: 'center'
     },
     mapContainer: {

@@ -12,6 +12,7 @@ import DetailsScreen from './src/screens/DetailsScreen';
 import CheckInScreen from './src/screens/CheckInScreen';
 import AlbumScreen from './src/screens/AlbumScreen';
 import AchievementsScreen from './src/screens/AchievementsScreen';
+import StoreScreen from './src/screens/StoreScreen';
 
 enableScreens();
 
@@ -90,6 +91,11 @@ const App = () => {
                         <Stack.Screen 
                             name="AchievementsScreen" 
                             component={AchievementsScreen} 
+                            options={{ headerShown: false }} 
+                        />
+                        <Stack.Screen 
+                            name="StoreScreen" 
+                            component={StoreScreen} 
                             options={{ headerShown: false }} 
                         />
                     </Stack.Navigator>

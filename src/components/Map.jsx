@@ -12,6 +12,7 @@ const Map = () => {
     const [selectedPlace, setSelectedPlace] = useState(null);
     const [markerSize, setMarkerSize] = useState(40);
     const [visitedPlaces, setVisitedPlaces] = useState([]);
+    const [purchasedPlaces, setPurchasedPlaces] = useState([]);
 
     useEffect(() => {
         const fetchVisitedPlaces = async () => {
@@ -20,6 +21,10 @@ const Map = () => {
                 const visitedTripsArray = storedVisitedTrips ? JSON.parse(storedVisitedTrips) : [];
                 const visitedNames = visitedTripsArray.map((trip) => trip.place?.name);
                 setVisitedPlaces(visitedNames);
+
+                const storedPurchasedPlaces = await AsyncStorage.getItem('purchasedPlaces');
+                const purchasedPlacesArray = storedPurchasedPlaces ? JSON.parse(storedPurchasedPlaces) : [];
+                setPurchasedPlaces(purchasedPlacesArray);        
             } catch (error) {
                 Alert.alert('Error', `Could not retrieve visited trips: ${error.message}`);
             }
@@ -78,6 +83,8 @@ const Map = () => {
 
     const isVisited = (placeName) => visitedPlaces.includes(placeName);
 
+    const combinedPlaces = [...places, ...purchasedPlaces];
+
     return (
         <View style={styles.container}>
             <MapView
@@ -91,7 +98,7 @@ const Map = () => {
                 }}
                 onRegionChange={handlePlaceChange}
             >
-                {places.map((item) => (
+                {combinedPlaces.map((item) => (
                     <Marker
                         key={item.name}
                         coordinate={{

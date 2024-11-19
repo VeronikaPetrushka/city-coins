@@ -95,7 +95,7 @@ const SettingsModal = ({ visible, onClose }) => {
 
     const handleReset = async () => {
       try {
-          await AsyncStorage.removeItem('trip');
+          await AsyncStorage.removeItem('purchasedPlaces');
           await AsyncStorage.removeItem('visitedTrips');
           await AsyncStorage.removeItem('userProfile');
           await AsyncStorage.removeItem('uploadedImage');
