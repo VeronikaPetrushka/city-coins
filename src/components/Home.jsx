@@ -125,13 +125,13 @@ const Home = () => {
                             end={{ x: 1.1, y: 0.5 }}
                             style={[styles.gradient]}
                         >
-                        <Text style={styles.btnText}>Plan your path</Text>
+                        <Text style={styles.btnText}>Route planning</Text>
                     </LinearGradient>
                 </TouchableOpacity>
             </View>
 
             <SettingsModal visible={settingsModalVisible} onClose={handleSettingsVisible} />
-            {/* <WelcomeModal visible={welcomeModalVisible} onClose={handleWelcomeVisible}/> */}
+            <WelcomeModal visible={welcomeModalVisible} onClose={handleWelcomeVisible}/>
             {/* <TripModal visible={tripModalVisible} onClose={handleTripVisible} /> */}
             <Tutorial visible={tutorialModalVisible} onClose={handleTutorialVisible}/>
 
