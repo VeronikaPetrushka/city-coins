@@ -71,7 +71,7 @@ const PlannedTrips = () => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.backIcon} onPress={() => navigation.navigate('HomeScreen')}>
+            <TouchableOpacity style={styles.backIcon} onPress={() => navigation.goBack('')}>
                 <Icons type={'back'} />
             </TouchableOpacity>
             <Text style={styles.title}>Planned Trips</Text>

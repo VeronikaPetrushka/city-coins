@@ -136,7 +136,7 @@ const Plan = () => {
 
             <Text style={styles.title}>Plan Your Visit</Text>
 
-            <View style={{ width: width * 0.54, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', marginBottom: height * 0.03 }}>
+            <View style={{ width: width * 0.54, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', marginBottom: height * 0.03, marginTop: height * 0.05 }}>
                 <DropDownPicker
                     open={open}
                     value={value}
@@ -160,7 +160,7 @@ const Plan = () => {
                 </TouchableOpacity>
             </View>
 
-            <View style={{ width: width * 0.89, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', marginBottom: height * 0.03 }}>
+            <View style={{ width: width * 0.89, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row', marginBottom: height * 0.03, marginTop: height * 0.05 }}>
                 <View style={styles.imageContainer}>
                     {selectedPlace ? (
                         <Image source={selectedPlace.image} style={styles.placeImage} />
@@ -196,13 +196,14 @@ const Plan = () => {
                 />
             )}
 
-            <TouchableOpacity styles={styles.submitBtn} onPress={handleSubmit}>
+            <TouchableOpacity style={[styles.submitBtn, {marginTop: height * 0.1}]} onPress={handleSubmit}>
                 <Text style={styles.submitBtnText}>Submit</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity styles={[styles.submitBtn, {backgroundColor: '#0036b7', marginTop: height * 0.03}]} onPress={() => navigation.navigate('PlannedTripsScreen')}>
-                <Text styles={styles.submitBtnText}>Other plans</Text>
+            <TouchableOpacity style={[styles.submitBtn, {backgroundColor: '#0036b7', marginTop: height * 0.02}]} onPress={() => navigation.navigate('PlannedTripsScreen')}>
+                <Text style={styles.submitBtnText}>Other plans</Text>
             </TouchableOpacity>
+            
         </View>
     );
 };
