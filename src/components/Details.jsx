@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity, Dimensions, ScrollView, Alert, ImageBackground } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -8,6 +8,22 @@ const { height } = Dimensions.get('window');
 
 const Details = ({ place }) => {
     const navigation = useNavigation();
+    const [isVisited, setIsVisited] = useState(false);
+
+    useEffect(() => {
+        const checkVisitedStatus = async () => {
+            try {
+                const storedVisitedTrips = await AsyncStorage.getItem('visitedTrips');
+                const visitedTripsArray = storedVisitedTrips ? JSON.parse(storedVisitedTrips) : [];
+                const visited = visitedTripsArray.some((trip) => trip.place && trip.place.name === place.name);
+                setIsVisited(visited);
+            } catch (error) {
+                Alert.alert('Error', `Could not retrieve visited trips: ${error.message}`);
+            }
+        };
+
+        checkVisitedStatus();
+    }, [place.name]);
 
     const handleAlbumPress = async () => {
         try {
@@ -24,7 +40,7 @@ const Details = ({ place }) => {
                     photos: matchingTrip.images || [],
                 });
             } else {
-                Alert.alert('No Album', `No album exists for ${place.name}.`);
+                Alert.alert('No Album', `No album exists for ${place.name}. Check in and add photos first.`);
             }
         } catch (error) {
             Alert.alert('Error', `Could not retrieve album: ${error.message}`);
@@ -45,17 +61,17 @@ const Details = ({ place }) => {
                 <Image source={place.image} style={styles.image} />
             <View style={styles.btnContainer}>
                 <TouchableOpacity  
-                    style={[styles.checkBtn, {backgroundColor: '#0036b7'}]} 
+                    style={[styles.checkBtn, {backgroundColor: '#0036b7'}, isVisited && styles.visitedBorder]} 
                     onPress={handleAlbumPress}
                 >
-                    <Text style={styles.checkBtnText}>Album</Text>
+                    <Text style={[styles.checkBtnText, isVisited && {color: '#ffc000'}]}>Album</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity  
-                    style={[styles.checkBtn]} 
+                    style={[styles.checkBtn, isVisited && styles.visitedBorder]} 
                     onPress={() => navigation.navigate('CheckInScreen', {place: place})}
                 >
-                    <Text style={styles.checkBtnText}>Check in</Text>
+                    <Text style={[styles.checkBtnText, isVisited && {color: '#ffc000'}]}>Check in</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.textContainer}>
@@ -97,6 +113,10 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 16,
         borderBottomRightRadius: 16,
         marginBottom: 16,
+    },
+    visitedBorder: {
+        borderWidth: 3,
+        borderColor: '#FFC000', // Golden border for visited places
     },
     btnContainer: {
         width: '100%',

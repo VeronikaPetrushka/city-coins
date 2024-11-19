@@ -115,7 +115,7 @@ const CheckIn = ({ place }) => {
             await AsyncStorage.setItem('score', JSON.stringify(newScore));
 
             setVisited(true);
-            Alert.alert('Success', `You've checked in at ${place.name} and get +${1000} to your total score! Great job! Keep exploring to earn more points!`);
+            Alert.alert('Success', `Congratulations! You’ve unlocked the [Achievement Name] for visiting ${place.name}. Keep exploring Copenhagen to earn more achievements, collect coins, and make the most of your journey! Every step brings new rewards!`);
 
             setPhoto(null);
             setValue(null);

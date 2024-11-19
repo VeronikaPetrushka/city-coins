@@ -107,7 +107,7 @@ const Home = () => {
             </TouchableOpacity>
 
             <View style={styles.bottomPanel}>
-                <TouchableOpacity style={styles.adviceBtn} onPress={''}>
+                <TouchableOpacity style={styles.adviceBtn} onPress={() => navigation.navigate('AchievementsScreen')}>
                     <LinearGradient
                             colors={['#2C3E50', '#3D85C6']}
                             start={{ x: -0.15, y: 0.5 }}

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import places from '../constants/places.js';
@@ -10,6 +11,22 @@ const Map = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedPlace, setSelectedPlace] = useState(null);
     const [markerSize, setMarkerSize] = useState(40);
+    const [visitedPlaces, setVisitedPlaces] = useState([]);
+
+    useEffect(() => {
+        const fetchVisitedPlaces = async () => {
+            try {
+                const storedVisitedTrips = await AsyncStorage.getItem('visitedTrips');
+                const visitedTripsArray = storedVisitedTrips ? JSON.parse(storedVisitedTrips) : [];
+                const visitedNames = visitedTripsArray.map((trip) => trip.place?.name);
+                setVisitedPlaces(visitedNames);
+            } catch (error) {
+                Alert.alert('Error', `Could not retrieve visited trips: ${error.message}`);
+            }
+        };
+
+        fetchVisitedPlaces();
+    }, []);
 
     useEffect(() => {
         if (mapRef.current) {
@@ -59,6 +76,8 @@ const Map = () => {
         }
     };
 
+    const isVisited = (placeName) => visitedPlaces.includes(placeName);
+
     return (
         <View style={styles.container}>
             <MapView
@@ -84,13 +103,15 @@ const Map = () => {
                         <View>
                             <Image
                                 source={item.image}
-                                style={[styles.markerImage, { width: markerSize, height: markerSize }]}
+                                style={[styles.markerImage,
+                                    isVisited(item.name) && styles.visitedMarkerBorder,
+                                     { width: markerSize, height: markerSize }]}
                             />
                         </View>
                         <Callout tooltip onPress={goToDetailsScreen}>
                             <View style={styles.calloutContainer}>
                                 <Text style={styles.placeName} numberOfLines={1} ellipsizeMode="tail">{item.name}</Text>
-                                <TouchableOpacity style={styles.detailsButton}>
+                                <TouchableOpacity style={[styles.detailsButton, isVisited(item.name) && styles.visitedButton,]}>
                                     <Text style={styles.detailsButtonText}>Details</Text>
                                 </TouchableOpacity>
                             </View>
@@ -134,6 +155,10 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#0036b7'
     },
+    visitedMarkerBorder: {
+        borderWidth: 3,
+        borderColor: '#FFC000',
+    },
     btnText: {
         color: '#fff',
         fontSize: 16,
@@ -161,6 +186,9 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    visitedButton: {
+        backgroundColor: '#FFC000',
     },
     detailsButtonText: {
         color: '#fff',
