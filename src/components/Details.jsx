@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity, Dimensions, ScrollView, Alert, ImageBackground } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import MapView, { Marker } from "react-native-maps";
 import Icons from "./Icons";
 
 const { height } = Dimensions.get('window');
@@ -10,7 +9,6 @@ const { height } = Dimensions.get('window');
 const Details = ({ place }) => {
     const navigation = useNavigation();
     const [visited, setVisited] = useState(false);
-    const [checkInDisabled, setCheckInDisabled] = useState(false);
 
     const checkIfVisited = async () => {
         try {
@@ -25,23 +23,9 @@ const Details = ({ place }) => {
         }
     };
 
-    const loadTrips = async () => {
-        try {
-            const storedTrip = await AsyncStorage.getItem('trip');
-            const tripArray = storedTrip ? JSON.parse(storedTrip) : [];
-            const availableTrips = tripArray.some(trip => !trip.isChecked && trip.quest);
-            setCheckInDisabled(!availableTrips);
-            console.log('Check-in disabled:', !availableTrips);
-        } catch (error) {
-            Alert.alert('Error', 'Could not load trips: ' + error.message);
-            console.error(error);
-        }
-    };
-
     useEffect(() => {
         console.log("Details component mounted");
         checkIfVisited();
-        loadTrips();
 
     }, [place]);    
 
@@ -58,16 +42,16 @@ const Details = ({ place }) => {
                 <Image source={place.image} style={styles.image} />
             <View style={styles.btnContainer}>
                 <TouchableOpacity  
-                    style={[styles.checkBtn, {backgroundColor: '#0036b7'}]} 
+                    style={[styles.checkBtn, {backgroundColor: '#0036b7'}, !visited && {opacity: 0.5}]} 
                     onPress={() => navigation.navigate('AlbumScreen', {place: place})}
+                    disabled={!visited}
                 >
                     <Text style={styles.checkBtnText}>Album</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity  
-                    style={[styles.checkBtn, checkInDisabled && {opacity: 0.5}]} 
+                    style={[styles.checkBtn]} 
                     onPress={() => navigation.navigate('CheckInScreen', {place: place})}
-                    // disabled={checkInDisabled}
                 >
                     <Text style={styles.checkBtnText}>Check in</Text>
                 </TouchableOpacity>

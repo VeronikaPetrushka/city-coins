@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, Alert, Dimensions, ScrollView, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import DropDownPicker from 'react-native-dropdown-picker';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker } from "react-native-maps";
@@ -11,7 +10,7 @@ const { height, width } = Dimensions.get('window');
 
 const heightThreshold = 700;
 
-const imageContainerHeight = height < heightThreshold ? height * 0.25 : height * 0.3;
+const imageContainerHeight = height < heightThreshold ? height * 0.3 : height * 0.35;
 
 const CheckIn = ({ place }) => {
     const mapRef = useRef(null);
@@ -19,11 +18,7 @@ const CheckIn = ({ place }) => {
     const [photo, setPhoto] = useState(null);
     const [zoomedIn, setZoomedIn] = useState(false);
     const [markerSize, setMarkerSize] = useState(40);
-    const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
-    const [items, setItems] = useState([]);
-    const [arrivalDate, setArrivalDate] = useState(null);
-    const [departureDate, setDepartureDate] = useState(null);
     const [visited, setVisited] = useState(false);
     const [photos, setPhotos] = useState([]);
 
@@ -33,34 +28,10 @@ const CheckIn = ({ place }) => {
                 Alert.alert('Error', 'Place is not defined or missing necessary information.');
                 return;
             }
-            
-            const { arrivalDate, departureDate } = place;
-            setArrivalDate(arrivalDate);
-            setDepartureDate(departureDate);
-    
-            await fetchTrips();
+                
             await checkIfVisited();
         };
-    
-        const fetchTrips = async () => {
-            try {
-                const storedTrip = await AsyncStorage.getItem('trip');
-                const tripArray = storedTrip ? JSON.parse(storedTrip) : [];
-    
-                const filteredTrips = tripArray.filter(trip => !trip.isChecked && trip.quest);
-    
-                const formattedTrips = filteredTrips.map((trip, index) => ({
-                    label: `${trip.arrivalDate} - ${trip.departureDate}`,
-                    value: trip,
-                    key: index,
-                }));
-    
-                setItems(formattedTrips);
-            } catch (error) {
-                Alert.alert('Error', 'Could not load trips: ' + error.message);
-            }
-        };
-    
+        
         const checkIfVisited = async () => {
             try {
                 const storedVisitedTrips = await AsyncStorage.getItem('visitedTrips');
@@ -116,20 +87,15 @@ const CheckIn = ({ place }) => {
     };
     
     const handleSubmit = async () => {
-        if (photos.length === 0 || !value) {
+        if (photos.length === 0 ) {
             Alert.alert('Error', 'Please upload at least one photo and select a trip date range.');
             return;
         }
     
-        const selectedTrip = value;
         const newVisitedTrip = {
             place,
-            trip: selectedTrip,
             visitedDate: new Date().toISOString(),
             images: photos,
-            arrivalDate: selectedTrip.arrivalDate,
-            departureDate: selectedTrip.departureDate,
-            quest: selectedTrip.quest,
             isChecked: true,
         };
 
@@ -142,16 +108,14 @@ const CheckIn = ({ place }) => {
 
             await AsyncStorage.setItem('visitedTrips', JSON.stringify(updatedVisitedTrips));
 
-            const randomScore = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
-
             const storedScore = await AsyncStorage.getItem('score');
             const currentScore = storedScore ? JSON.parse(storedScore) : 0;
 
-            const newScore = currentScore + randomScore;
+            const newScore = currentScore + 1000;
             await AsyncStorage.setItem('score', JSON.stringify(newScore));
 
             setVisited(true);
-            Alert.alert('Success', `You've checked in at ${place.name} and get +${randomScore} to your total score! Great job! Keep exploring to earn more points!`);
+            Alert.alert('Success', `You've checked in at ${place.name} and get +${1000} to your total score! Great job! Keep exploring to earn more points!`);
 
             setPhoto(null);
             setValue(null);
@@ -230,25 +194,6 @@ const CheckIn = ({ place }) => {
                     </View>
                 </View>
             )}
-
-            <DropDownPicker
-                open={open}
-                value={value}
-                items={items}
-                setOpen={setOpen}
-                setValue={setValue}
-                setItems={setItems}
-                placeholder="Select a trip date range"
-                style={styles.picker}
-                dropDownContainerStyle={{ borderColor: '#2C3E50', backgroundColor: '#e3effa' }}
-                placeholderStyle={{ color: '#0036b7', fontSize: 16 }}
-                textStyle={{ color: '#2C3E50', fontSize: 16 }}
-                dropDownDirection="BOTTOM"
-                onSelectItem={(item) => {
-                    setValue(item.value);
-                    setOpen(false);
-                }}
-            />
 
             <TouchableOpacity style={styles.checkBtn} onPress={handleSubmit}>
                 <Text style={styles.checkBtnText}>Check in</Text>
