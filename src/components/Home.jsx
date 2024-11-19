@@ -18,6 +18,7 @@ const Home = () => {
     const [tripModalVisible, setTripModalVisible] = useState(false);
     const [tutorialModalVisible, setTutorialModalVisible] = useState(false);
     const [uploadedImage, setUploadedImage] = useState({ uri: Image.resolveAssetSource(require('../assets/avatar/user.png')).uri });
+    const [score, setScore] = useState(0);
 
     const loadAvatar = async () => {
         try {
@@ -33,10 +34,21 @@ const Home = () => {
         }
       };
 
-      useEffect(() => {
+      const loadScore = async () => {
+        try {
+            const storedScore = await AsyncStorage.getItem('score');
+            const parsedScore = storedScore ? JSON.parse(storedScore) : 0;
+            setScore(parsedScore);
+        } catch (error) {
+            console.error('Error loading score:', error);
+        }
+    };
+    
+    useEffect(() => {
         loadAvatar();
-      }, []);
-
+        loadScore();
+    }, []);
+    
     const handleWelcomeVisible = () => {
         setWelcomeModalVisible(!welcomeModalVisible);
     };
@@ -62,7 +74,7 @@ const Home = () => {
 
             <View style={styles.upperPanel}>
                 <View style={styles.scoreContainer}>
-                    <Text style={styles.score}>1000</Text>
+                    <Text style={styles.score}>{score}</Text>
                 </View>
                 <TouchableOpacity style={styles.infoBtn} onPress={handleTripVisible}>
                     <Text style={styles.infoText}>Store</Text>

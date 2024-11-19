@@ -8,26 +8,29 @@ const { height } = Dimensions.get('window');
 
 const Details = ({ place }) => {
     const navigation = useNavigation();
-    const [visited, setVisited] = useState(false);
 
-    const checkIfVisited = async () => {
+    const handleAlbumPress = async () => {
         try {
             const storedVisitedTrips = await AsyncStorage.getItem('visitedTrips');
             const visitedTripsArray = storedVisitedTrips ? JSON.parse(storedVisitedTrips) : [];
-            const visitedTrip = visitedTripsArray.find(trip => trip.place && trip.place.name === place.name);
-            setVisited(!!visitedTrip);
-            console.log(`Visited status for ${place.name}:`, !!visitedTrip);
+    
+            const matchingTrip = visitedTripsArray.find(
+                (trip) => trip.place && trip.place.name === place.name
+            );
+    
+            if (matchingTrip) {
+                navigation.navigate('AlbumScreen', {
+                    name: place.name,
+                    photos: matchingTrip.images || [],
+                });
+            } else {
+                Alert.alert('No Album', `No album exists for ${place.name}.`);
+            }
         } catch (error) {
-            Alert.alert('Error', 'Could not check visit status: ' + error.message);
-            console.error(error);
+            Alert.alert('Error', `Could not retrieve album: ${error.message}`);
         }
     };
-
-    useEffect(() => {
-        console.log("Details component mounted");
-        checkIfVisited();
-
-    }, [place]);    
+    
 
     const handleBackPress = () => {
         navigation.navigate('HomeScreen');
@@ -42,9 +45,8 @@ const Details = ({ place }) => {
                 <Image source={place.image} style={styles.image} />
             <View style={styles.btnContainer}>
                 <TouchableOpacity  
-                    style={[styles.checkBtn, {backgroundColor: '#0036b7'}, !visited && {opacity: 0.5}]} 
-                    onPress={() => navigation.navigate('AlbumScreen', {place: place})}
-                    disabled={!visited}
+                    style={[styles.checkBtn, {backgroundColor: '#0036b7'}]} 
+                    onPress={handleAlbumPress}
                 >
                     <Text style={styles.checkBtnText}>Album</Text>
                 </TouchableOpacity>
