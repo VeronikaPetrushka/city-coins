@@ -6,9 +6,8 @@ const { height } = Dimensions.get('window');
 
 const Tutorial = ({ visible, onClose }) => {
     const tutorialData = [
-        { image: require('../assets/avatar/user.png'), title: 'Daily Check-in:', text: "Earn points every time you log in to the app." },
-        { image: require('../assets/avatar/user.png'), title: 'Visit Attractions', text: "Check in at sights using geolocation to earn achievements and points." },
-        { image: require('../assets/avatar/user.png'), title: 'Capture the Moment', text: "Take a photo at each attraction for extra rewards. Keep exploring to collect them all!" },
+        { image: require('../assets/places/4.png'), title: 'Visit Attractions', text: "Check in at sights using geolocation to earn achievements and points." },
+        { image: require('../assets/places/8.png'), title: 'Capture the Moment', text: "Take a photo at each attraction for extra rewards. Keep exploring to collect them all!" },
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -41,7 +40,7 @@ const Tutorial = ({ visible, onClose }) => {
             onRequestClose={onClose}>
             <View style={styles.modalOverlay}>
                 <View style={styles.modalContent}>
-                    <Text style={styles.modalTitle}>Tutorial on How the App Works:</Text>
+                    <Text style={styles.modalTitle}>How to earn points:</Text>
 
                     <Image source={tutorialData[currentIndex].image} style={styles.image} />
                     <Text style={styles.title}>{tutorialData[currentIndex].title}</Text>

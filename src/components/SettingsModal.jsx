@@ -126,7 +126,7 @@ const SettingsModal = ({ visible, onClose }) => {
                     {showResetConfirmation ? (
                         <>
                             <Text style={styles.confirmationText}>
-                                Are you sure you want to reset your progress? It will reset your account along with your daily game progress, folders, and its images!
+                                Are you sure you want to reset your progress? It will reset your account along with your achievements, collected places, score, and plans!
                             </Text>
                             <TouchableOpacity style={[styles.resetBtn, {marginTop: 0}]} onPress={handleReset}>
                                 <Text style={styles.resetBtnText}>Reset</Text>
