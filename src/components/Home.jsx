@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import LinearGradient from "react-native-linear-gradient";
 import WelcomeModal from "./WelcomeModal.jsx";
 import SettingsModal from "./SettingsModal.jsx";
-// import TripModal from "./TripModal.jsx";
 import Tutorial from "./Tutorial.jsx";
 import Map from "./Map";
 
@@ -15,7 +14,6 @@ const Home = () => {
     const navigation = useNavigation();
     const [welcomeModalVisible, setWelcomeModalVisible] = useState(true);
     const [settingsModalVisible, setSettingsModalVisible] = useState(false);
-    const [tripModalVisible, setTripModalVisible] = useState(false);
     const [tutorialModalVisible, setTutorialModalVisible] = useState(false);
     const [uploadedImage, setUploadedImage] = useState({ uri: Image.resolveAssetSource(require('../assets/avatar/user.png')).uri });
     const [score, setScore] = useState(0);
@@ -58,11 +56,6 @@ const Home = () => {
         setUploadedImage({ uri: Image.resolveAssetSource(require('../assets/avatar/user.png')).uri });
         await loadAvatar();
     }
-
-    const handleTripVisible = () => {
-        setTripModalVisible(!tripModalVisible);
-    };
-
 
     const handleTutorialVisible = () => {
         setTutorialModalVisible(!tutorialModalVisible);
@@ -118,7 +111,7 @@ const Home = () => {
                     </LinearGradient>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.scoreBtn} onPress={() => navigation.navigate('StatisticScreen')}>
+                <TouchableOpacity style={styles.scoreBtn} onPress={() => navigation.navigate('PlanScreen')}>
                     <LinearGradient
                             colors={['#3D85C6', '#2C3E50']}
                             start={{ x: -0.15, y: 0.5 }}
@@ -132,7 +125,6 @@ const Home = () => {
 
             <SettingsModal visible={settingsModalVisible} onClose={handleSettingsVisible} />
             <WelcomeModal visible={welcomeModalVisible} onClose={handleWelcomeVisible}/>
-            {/* <TripModal visible={tripModalVisible} onClose={handleTripVisible} /> */}
             <Tutorial visible={tutorialModalVisible} onClose={handleTutorialVisible}/>
 
         </View>

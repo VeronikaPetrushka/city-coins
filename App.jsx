@@ -13,6 +13,8 @@ import CheckInScreen from './src/screens/CheckInScreen';
 import AlbumScreen from './src/screens/AlbumScreen';
 import AchievementsScreen from './src/screens/AchievementsScreen';
 import StoreScreen from './src/screens/StoreScreen';
+import PlanScreen from './src/screens/PlanScreen';
+import PlannedTripsScreen from './src/screens/PlannedTripsScreen';
 
 enableScreens();
 
@@ -96,6 +98,16 @@ const App = () => {
                         <Stack.Screen 
                             name="StoreScreen" 
                             component={StoreScreen} 
+                            options={{ headerShown: false }} 
+                        />
+                        <Stack.Screen 
+                            name="PlanScreen" 
+                            component={PlanScreen} 
+                            options={{ headerShown: false }} 
+                        />
+                        <Stack.Screen 
+                            name="PlannedTripsScreen" 
+                            component={PlannedTripsScreen} 
                             options={{ headerShown: false }} 
                         />
                     </Stack.Navigator>

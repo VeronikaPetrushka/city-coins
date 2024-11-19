@@ -100,6 +100,7 @@ const SettingsModal = ({ visible, onClose }) => {
           await AsyncStorage.removeItem('userProfile');
           await AsyncStorage.removeItem('uploadedImage');
           await AsyncStorage.removeItem('score');
+          await AsyncStorage.removeItem('plan');
 
           Alert.alert('Success', 'All trip data has been reset.');
       } catch (error) {

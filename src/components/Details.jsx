@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     },
     visitedBorder: {
         borderWidth: 3,
-        borderColor: '#FFC000', // Golden border for visited places
+        borderColor: '#FFC000',
     },
     btnContainer: {
         width: '100%',
