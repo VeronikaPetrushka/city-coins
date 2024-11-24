@@ -62,7 +62,7 @@ const Home = () => {
     };
 
     return (
-        // <ImageBackground source={require('../assets/newDiz/back.png')} style={{ flex: 1 }}>
+        <ImageBackground source={require('../assets/newDiz/back.png')} style={{ flex: 1 }}>
         <View style={styles.container}>
 
             <View style={styles.upperPanel}>
@@ -89,7 +89,7 @@ const Home = () => {
 
             <TouchableOpacity style={styles.tutorialBtn} onPress={handleTutorialVisible}>
                 <LinearGradient
-                            colors={['#3a72fa', '#0036b7']}
+                            colors={['#95bc86', '#40af17']}
                             
                             start={{ x: -0.15, y: 0.5 }}
                             end={{ x: 1.1, y: 0.5 }}
@@ -102,7 +102,7 @@ const Home = () => {
             <View style={styles.bottomPanel}>
                 <TouchableOpacity style={styles.adviceBtn} onPress={() => navigation.navigate('AchievementsScreen')}>
                     <LinearGradient
-                            colors={['#2C3E50', '#3D85C6']}
+                            colors={['#2b790e', '#6aa156']}
                             start={{ x: -0.15, y: 0.5 }}
                             end={{ x: 1.1, y: 0.5 }}
                             style={[styles.gradient]}
@@ -113,7 +113,7 @@ const Home = () => {
 
                 <TouchableOpacity style={styles.scoreBtn} onPress={() => navigation.navigate('PlanScreen')}>
                     <LinearGradient
-                            colors={['#3D85C6', '#2C3E50']}
+                            colors={['#6aa156', '#2b790e']}
                             start={{ x: -0.15, y: 0.5 }}
                             end={{ x: 1.1, y: 0.5 }}
                             style={[styles.gradient]}
@@ -128,7 +128,7 @@ const Home = () => {
             <Tutorial visible={tutorialModalVisible} onClose={handleTutorialVisible}/>
 
         </View>
-        // </ImageBackground>
+        </ImageBackground>
     )
 };
 
@@ -141,7 +141,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         padding: 20,
         paddingTop: height * 0.07,
-        backgroundColor: '#e3effa'
     },
 
     upperPanel: {
@@ -161,7 +160,7 @@ const styles = StyleSheet.create({
     score: {
         fontSize: 18,
         fontWeight: '900',
-        color: '#3D85C6',
+        color: '#6aa156',
     },
 
     infoBtn: {
@@ -171,14 +170,14 @@ const styles = StyleSheet.create({
         padding: 14,
         borderRadius: 14,
         borderWidth: 1,
-        borderColor: '#0036b7',
+        borderColor: '#2b790e',
         marginRight: 20,
     },
 
     infoText: {
         fontSize: 17,
         fontWeight: '900',
-        color: '#3D85C6',
+        color: '#6aa156',
     },
 
     settingsContainer: {
@@ -195,7 +194,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         marginBottom: 5,
         borderWidth: 1,
-        borderColor: '#0036b7'
+        borderColor: '#2b790e'
     },
 
     avatarImage: {
@@ -207,7 +206,7 @@ const styles = StyleSheet.create({
     settingsText: {
         fontSize: 11,
         fontWeight: '900',
-        color: '#3D85C6'
+        color: '#6aa156'
     },
 
     quizIcon: {

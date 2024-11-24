@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, Alert, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -129,6 +129,7 @@ const Plan = () => {
     };
     
     return (
+        <ImageBackground source={require('../assets/newDiz/back.png')} style={{ flex: 1 }}>
         <View style={styles.container}>
             <TouchableOpacity style={styles.backIcon} onPress={handleBackPress}>
                 <Icons type={'back'}/>
@@ -147,9 +148,9 @@ const Plan = () => {
                     setItems={setItems}
                     placeholder="Select a place"
                     style={styles.dropdown}
-                    dropDownContainerStyle={{ borderColor: '#3D85C6', backgroundColor: '#e3effa', width: width * 0.5 }}
-                    placeholderStyle={{ color: '#2C3E50', fontSize: 16 }}
-                    textStyle={{ color: '#2C3E50', fontSize: 16, fontWeight: '500' }}
+                    dropDownContainerStyle={{ borderColor: '#00b967', backgroundColor: '#153c07', width: width * 0.5 }}
+                    placeholderStyle={{ color: '#aac99e', fontSize: 16 }}
+                    textStyle={{ color: '#aac99e', fontSize: 16, fontWeight: '500' }}
                     dropDownDirection="BOTTOM"
                 />
 
@@ -183,12 +184,12 @@ const Plan = () => {
                     style={{ width: width * 0.89, borderRadius: 12 }}
                     onDayPress={handleDayPress}
                     markedDates={{
-                        [visitingDate?.toISOString().split('T')[0]]: { selected: true, selectedColor: '#3a72fa' },
+                        [visitingDate?.toISOString().split('T')[0]]: { selected: true, selectedColor: '#2b790e' },
                     }}
                     theme={{
-                        selectedDayBackgroundColor: '#3a72fa',
-                        todayTextColor: '#3D85C6',
-                        arrowColor: '#3a72fa',
+                        selectedDayBackgroundColor: '#2b790e',
+                        todayTextColor: '#00b967',
+                        arrowColor: '#2b790e',
                         textDayFontWeight: '500',
                         textMonthFontWeight: 'bold',
                         textDayHeaderFontWeight: '500',
@@ -200,11 +201,12 @@ const Plan = () => {
                 <Text style={styles.submitBtnText}>Submit</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.submitBtn, {backgroundColor: '#0036b7', marginTop: height * 0.02}]} onPress={() => navigation.navigate('PlannedTripsScreen')}>
+            <TouchableOpacity style={[styles.submitBtn, {backgroundColor: '#339011', marginTop: height * 0.02}]} onPress={() => navigation.navigate('PlannedTripsScreen')}>
                 <Text style={styles.submitBtnText}>Other plans</Text>
             </TouchableOpacity>
             
         </View>
+        </ImageBackground>
     );
 };
 
@@ -214,7 +216,6 @@ const styles = StyleSheet.create({
         height: '100%',
         paddingTop: height * 0.07,
         padding: 20,
-        backgroundColor: '#e3effa',
     },
     backIcon: {
         width: 60,
@@ -228,7 +229,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 26,
         fontWeight: '900',
-        color: '#0036b7',
+        color: '#7fae6e',
         textAlign: 'center',
         marginBottom: 20,
     },
@@ -236,7 +237,7 @@ const styles = StyleSheet.create({
         width: width * 0.5,
         backgroundColor: '#fff',
         borderWidth: 1,
-        borderColor: '#3D85C6',
+        borderColor: '#00b967',
         backgroundColor: 'transparent',
         borderRadius: 12,
     },
@@ -246,13 +247,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 15,
         borderRadius: 12,
-        borderColor: '#3D85C6',
+        borderColor: '#00b967',
         borderWidth: 1,
     },
     dateText: {
         fontSize: 15,
         fontWeight: '500',
-        color: '#3C3C3B',
+        color: '#aac99e',
     },
     imageContainer: {
         width: width * 0.35,
@@ -270,7 +271,7 @@ const styles = StyleSheet.create({
         height: '100%',
         borderRadius: 10,
         borderWidth: 2,
-        borderColor: '#2C3E50',
+        borderColor: '#aac99e',
         backgroundColor: 'rgba(44, 62, 80, 0.2)',
         alignItems: 'center',
         justifyContent: 'center',
@@ -302,7 +303,7 @@ const styles = StyleSheet.create({
         width: width * 0.89,
         padding: 10,
         borderRadius: 12,
-        backgroundColor: '#3D85C6',
+        backgroundColor: '#00b967',
         alignItems: 'center',
         justifyContent: 'center',
     },

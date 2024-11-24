@@ -129,7 +129,7 @@ const CheckIn = ({ place }) => {
     };
 
     return (
-        // <ImageBackground source={require('../assets/newDiz/back.png')} style={{ flex: 1 }}>
+        <ImageBackground source={require('../assets/newDiz/back.png')} style={{ flex: 1 }}>
         <View style={styles.container}>
             <TouchableOpacity style={styles.backIcon} onPress={() => navigation.goBack('')}>
                 <Icons type={'back'} />
@@ -200,7 +200,7 @@ const CheckIn = ({ place }) => {
                 <Text style={styles.checkBtnText}>Check in</Text>
             </TouchableOpacity>
         </View>
-        // </ImageBackground>
+        </ImageBackground>
     );
 };
 
@@ -214,7 +214,6 @@ const styles = StyleSheet.create({
         padding: 16,
         paddingTop: height * 0.07,
         paddingBottom: height * 0.05,
-        backgroundColor: '#e3effa'
     },
     backIcon: {
         width: 60,
@@ -229,7 +228,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: '900',
         marginBottom: 30,
-        color: '#0036b7',
+        color: '#7fae6e',
         width: width * 0.69,
         textAlign: 'center'
     },
@@ -247,13 +246,13 @@ const styles = StyleSheet.create({
     markerImage: {
         borderRadius: 100,
         borderWidth: 2,
-        borderColor: '#3D85C6',
+        borderColor: '#02ae53',
     },
     zoomButton: {
         position: "absolute",
         bottom: 10,
         right: 10,
-        backgroundColor: "#3D85C6",
+        backgroundColor: "#02ae53",
         paddingVertical: 6,
         paddingHorizontal: 12,
         borderRadius: 5,
@@ -265,7 +264,7 @@ const styles = StyleSheet.create({
         fontWeight: '300',
     },
     uploadButton: {
-        backgroundColor: '#3D85C6',
+        backgroundColor: '#02ae53',
         padding: 10,
         alignItems: 'center',
         justifyContent: 'center',
@@ -296,7 +295,7 @@ const styles = StyleSheet.create({
         height: imageContainerHeight,
         borderRadius: 10,
         borderWidth: 2,
-        borderColor: '#2C3E50',
+        borderColor: '#aac99e',
         backgroundColor: 'rgba(44, 62, 80, 0.2)',
         alignItems: 'center',
         justifyContent: 'center',
@@ -322,14 +321,14 @@ const styles = StyleSheet.create({
     picker: {
         width: '100%',
         backgroundColor: 'transparent',
-        borderColor: '#2C3E50',
+        borderColor: '#aac99e',
         marginBottom: 15
     },
     checkBtn: {
         width: "100%",
         padding: 10,
         borderRadius: 10,
-        backgroundColor: '#3D85C6',
+        backgroundColor: '#02ae53',
         alignItems: 'center',
         justifyContent: 'center',
     },

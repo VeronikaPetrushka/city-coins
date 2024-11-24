@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
         borderRadius: 14,
         overflow: 'hidden',
         borderWidth: 0.5,
-        borderColor: '#0036b7'
+        borderColor: '#00b967'
     },
     map: {
         width: '100%',
@@ -153,14 +153,14 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 5,
         paddingHorizontal: 15,
-        backgroundColor: '#0036b7',
+        backgroundColor: '#00b967',
         alignItems: 'center',
         justifyContent: 'center',
     },
     markerImage: {
         borderRadius: 20,
         borderWidth: 2,
-        borderColor: '#0036b7'
+        borderColor: '#00b967'
     },
     visitedMarkerBorder: {
         borderWidth: 3,
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     detailsButton: {
-        backgroundColor: '#0036b7',
+        backgroundColor: '#00b967',
         paddingHorizontal: 10,
         paddingVertical: 5,
         borderRadius: 5,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, ScrollView, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ScrollView, StyleSheet, Dimensions, TouchableOpacity, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icons from './Icons';
 
@@ -13,6 +13,7 @@ const AlbumScreen = ({ name, photos  }) => {
     };
 
     return (
+        <ImageBackground source={require('../assets/newDiz/back.png')} style={{ flex: 1 }}>
         <View style={styles.container}>
             <TouchableOpacity style={styles.backIcon} onPress={handleBackPress}>
                 <Icons type={'back'}/>
@@ -28,6 +29,7 @@ const AlbumScreen = ({ name, photos  }) => {
                 )}
             </ScrollView>
         </View>
+        </ImageBackground>
     );
 };
 
@@ -36,7 +38,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
         paddingTop: height * 0.07,
-        backgroundColor: '#e3effa',
     },
     backIcon: {
         width: 60,
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: '900',
         marginBottom: 30,
-        color: '#0036b7',
+        color: '#7fae6e',
         width: width * 0.8,
         textAlign: 'center',
         alignSelf: 'center',

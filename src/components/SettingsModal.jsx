@@ -156,7 +156,7 @@ const SettingsModal = ({ visible, onClose }) => {
                                     <TextInput
                                         value={name}
                                         placeholder="Enter your name"
-                                        placeholderTextColor="#3a72fa"
+                                        placeholderTextColor="#2b790e"
                                         onChangeText={handleNameChange}
                                         style={styles.input}
                                     />
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
         fontSize: 28,
         textAlign: 'center',
         marginBottom: 20,
-        color: '#3D85C6'
+        color: '#7fae6e'
     },
     regulatorContainer: {
         flexDirection: 'row',
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         textAlign: 'center',
         fontWeight: 'bold',
-        color: '#3a72fa'
+        color: '#2b790e'
     },
     toggleContainer: {
         padding: 7,
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 1,
         borderRadius: 30,
-        borderColor: '#3a72fa',
+        borderColor: '#2b790e',
     },
     toggleContainerOff: {
         borderColor: '#ccc',
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     toggleTextOn: {
-        color: '#3a72fa',
+        color: '#2b790e',
     },
     toggleTextOff: {
         color: '#ccc',
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     toggleOn: {
-        backgroundColor: '#3a72fa',
+        backgroundColor: '#2b790e',
         alignSelf: 'flex-end',
     },
     toggleOff: {
@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
     },
     shareBtn: {
         width: '100%',
-        backgroundColor: '#3a72fa',
+        backgroundColor: '#2b790e',
         borderRadius: 15,
         padding: 15,
         alignItems: 'center',
@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
         width: width * 0.7,
         backgroundColor: 'transparent',
         borderWidth: 1,
-        borderColor: '#3D85C6',
+        borderColor: '#7fae6e',
         borderRadius: 15,
         padding: 15,
         alignItems: 'center',
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     resetBtnText: {
-        color: '#3D85C6',
+        color: '#7fae6e',
         fontSize: 19,
         fontWeight: '500',
     },
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
     },
     cancelReset: {
         width: width * 0.7,
-        backgroundColor: '#3D85C6',
+        backgroundColor: '#7fae6e',
         borderRadius: 15,
         padding: 15,
         alignItems: 'center',
@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
         fontWeight: "900",
         marginBottom: 20,
         marginTop: -15,
-        color: '#3D85C6'
+        color: '#7fae6e'
       },
     
       avatarPlaceholder: {
@@ -378,11 +378,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         marginTop: height * 0.05,
         borderWidth: 1,
-        borderColor: "#3D85C6",
+        borderColor: "#7fae6e",
         borderRadius: 10,
         width: "100%",
         fontSize: 17,
-        color: '#3D85C6',
+        color: '#7fae6e',
         marginBottom: 20,
       },
     
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
         padding: 12,
         borderRadius: 10,
         marginBottom: 15,
-        backgroundColor: '#3a72fa',
+        backgroundColor: '#2b790e',
       },
     
       btnCreateText: {
@@ -403,7 +403,7 @@ const styles = StyleSheet.create({
     
       btnText: {
         fontSize: 18,
-        color: '#3D85C6',
+        color: '#7fae6e',
         fontWeight: '500'
       },
     
@@ -413,7 +413,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
-        borderColor: '#3a72fa',
+        borderColor: '#2b790e',
         borderRadius: 10,
         width: '100%'
       },

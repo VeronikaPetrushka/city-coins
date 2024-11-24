@@ -53,7 +53,7 @@ const Details = ({ place }) => {
     };
     
     return (
-        // <ImageBackground source={require('../assets/newDiz/back.png')} style={{ flex: 1 }}>
+        <ImageBackground source={require('../assets/newDiz/back.png')} style={{ flex: 1 }}>
         <View style={styles.container}>
             <TouchableOpacity style={styles.backIcon} onPress={handleBackPress}>
                 <Icons type={'back'}/>
@@ -61,7 +61,7 @@ const Details = ({ place }) => {
                 <Image source={place.image} style={styles.image} />
             <View style={styles.btnContainer}>
                 <TouchableOpacity  
-                    style={[styles.checkBtn, {backgroundColor: '#0036b7'}, isVisited && styles.visitedBorder]} 
+                    style={[styles.checkBtn, {backgroundColor: '#7fae6e'}, isVisited && styles.visitedBorder]} 
                     onPress={handleAlbumPress}
                 >
                     <Text style={[styles.checkBtnText, isVisited && {color: '#ffc000'}]}>Album</Text>
@@ -85,7 +85,7 @@ const Details = ({ place }) => {
                 </ScrollView>
             </View>
         </View>
-        // </ImageBackground>
+        </ImageBackground>
     );
 };
 
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
         height: '100%',
         paddingTop: 0,
         paddingBottom: 30,
-        backgroundColor: '#e3effa'
     },
     backIcon: {
         width: 60,
@@ -131,7 +130,7 @@ const styles = StyleSheet.create({
         width: "48%",
         height: height * 0.08,
         borderRadius: 10,
-        backgroundColor: '#3D85C6',
+        backgroundColor: '#aac99e',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -143,7 +142,7 @@ const styles = StyleSheet.create({
     markerImage: {
         borderRadius: 100,
         borderWidth: 2,
-        borderColor: '#0036b7'
+        borderColor: '#7fae6e'
     },
     textContainer: {
         paddingHorizontal: 16,
@@ -153,18 +152,18 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '900',
         marginBottom: 15,
-        color: '#0036b7',
+        color: '#7fae6e',
         textAlign: 'center'
     },
     description: {
         fontSize: 17,
         marginBottom: 10,
-        color: '#3D85C6',
+        color: '#aac99e',
         textAlign: 'justify'
     },
     fact: {
         fontSize: 15,
-        color: '#3D85C6',
+        color: '#aac99e',
         textAlign: 'justify'
     },
     visitedIcon: {

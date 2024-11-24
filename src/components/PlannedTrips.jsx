@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, Alert, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, Alert, Dimensions, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import Icons from './Icons';
@@ -47,10 +47,10 @@ const PlannedTrips = () => {
                 />
                 <Text style={styles.placeName}>{place.name || 'No name available'}</Text>
                 <Text style={styles.placeInfo}>{place.address || 'No address available'}</Text>
-                <Text style={styles.placeDate}>Planned on: {visitingDate}</Text>
+                <Text style={styles.placeInfo}>Planned on: {visitingDate}</Text>
         
                 <TouchableOpacity
-                    style={[styles.detailsButton, {backgroundColor: '#ea9999'}]}
+                    style={[styles.detailsButton, {backgroundColor: '#c73131'}]}
                     onPress={() =>
                         Alert.alert(
                             'Delete Plan',
@@ -70,6 +70,7 @@ const PlannedTrips = () => {
 
 
     return (
+        <ImageBackground source={require('../assets/newDiz/back.png')} style={{ flex: 1 }}>
         <View style={styles.container}>
             <TouchableOpacity style={styles.backIcon} onPress={() => navigation.goBack('')}>
                 <Icons type={'back'} />
@@ -85,6 +86,7 @@ const PlannedTrips = () => {
                 <Text style={styles.noPlansText}>No plans found. Start planning your trips!</Text>
             )}
         </View>
+        </ImageBackground>
     );
 };
 
@@ -93,7 +95,6 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
         paddingTop: height * 0.07,
-        backgroundColor: '#e3effa',
         alignItems: 'center'
     },
     backIcon: {
@@ -109,11 +110,11 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 16,
-        color: '#0036b7',
+        color: '#7fae6e',
     },
     noPlansText: {
         fontSize: 16,
-        color: '#888',
+        color: '#aac99e',
         marginTop: 32,
         textAlign: 'center',
     },
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 16,
         textAlign: 'center',
-        color: '#2C3E50',
+        color: '#aac99e',
       },
       detailsButton: {
         marginTop: 10,
@@ -163,6 +164,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    placeInfo: {
+        color: '#6aa156'
+    }
 });
 
 export default PlannedTrips;

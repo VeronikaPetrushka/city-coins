@@ -12,15 +12,15 @@ const Icons = ({ type }) => {
         break;
     case 'close':
         imageSource = require('../assets/icons/close.png');
-        iconStyle.push(styles.blue);
+        iconStyle.push(styles.green);
         break;
     case 'back':
         imageSource = require('../assets/icons/back.png');
-        iconStyle.push(styles.blue);
+        iconStyle.push(styles.green);
         break;
     case 'image':
         imageSource = require('../assets/icons/image.png');
-        iconStyle.push(styles.blue);
+        iconStyle.push(styles.green);
         break;
     case 'visited':
         imageSource = require('../assets/icons/visited.png');
@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
     height: '100%',
     objectFit: 'cover'
   },
-  blue: {
+  green: {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    tintColor: '#0036b7'
+    tintColor: '#7fae6e'
   }
 });
 

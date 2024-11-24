@@ -101,15 +101,15 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: '800',
         lineHeight: 23,
-        color: '#0036b7',
+        color: '#2b790e',
         marginBottom: 20,
         textAlign: 'center',
     },
     title: {
         fontSize: 18,
-        fontWeight: '700',
+        fontWeight: '900',
         lineHeight: 18,
-        color: '#3D85C6',
+        color: '#7fae6e',
         marginBottom: 20,
         textAlign: 'center'
     },
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#3D85C6',
+        backgroundColor: '#02ae53',
         alignSelf: 'center'
     },
     buttonText: {

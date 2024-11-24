@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, FlatList, Dimensions, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, FlatList, Dimensions, Alert, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import places from '../constants/places';
@@ -71,6 +71,7 @@ const Achievements = () => {
   const combinedPlaces = [...places, ...purchasedPlaces];
 
   return (
+    <ImageBackground source={require('../assets/newDiz/back.png')} style={{ flex: 1 }}>
     <View style={styles.container}>
       <TouchableOpacity style={styles.backIcon} onPress={handleBackPress}>
         <Icons type={'back'} />
@@ -83,6 +84,7 @@ const Achievements = () => {
         contentContainerStyle={styles.list}
       />
     </View>
+    </ImageBackground>
   );
 };
 
@@ -91,7 +93,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     paddingTop: height * 0.07,
-    backgroundColor: '#e3effa',
   },
   backIcon: {
     width: 60,
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: '900',
     marginBottom: 30,
-    color: '#0036b7',
+    color: '#7fae6e',
     width: width * 0.8,
     textAlign: 'center',
     alignSelf: 'center',
@@ -136,11 +137,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 16,
     textAlign: 'center',
-    color: '#2C3E50',
+    color: '#aac99e',
   },
   detailsButton: {
     marginTop: 10,
-    backgroundColor: '#3D85C6',
+    backgroundColor: '#00b967',
     paddingVertical: 6,
     borderRadius: 10,
     alignItems: 'center',
